@@ -10,11 +10,11 @@ export default function App({ Component, pageProps }: any) {
     >
       <main className="flex flex-col justify-center items-center w-full h-screen bg-neutral-900">
         <section className="h-full w-full flex flex-col bg-neutral-800 items-center overflow-y-auto max-w-3xl py-10 text-white">
-          <div className="w-full flex items-center justify-center gap-5 flex-1">
+          <div className="w-full flex items-center justify-center gap-5 basis-1/4">
             <svg
               viewBox="328 355 335 276"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-10 h-10 text-cyan-400"
+              className="w-12 h-12 text-cyan-400"
             >
               <path
                 d="

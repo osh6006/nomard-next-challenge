@@ -15,7 +15,7 @@ export default () => (
         />
         <button
           type="submit"
-          className="absolute top-0 right-0 px-2.5 py-[11px] text-xl font-medium text-white bg-sky-500 rounded-r-lg transition-colors hover:bg-sky-300 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 "
+          className="absolute top-0 right-0 px-2.5 py-[12px] text-xl font-medium text-white bg-sky-400 rounded-r-lg transition-colors hover:bg-sky-300 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
