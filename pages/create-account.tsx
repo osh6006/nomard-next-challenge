@@ -1,6 +1,6 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
 
-interface Register {
+interface RegisterValue {
   email: String;
   password: String;
   passwordConfirm: String;
@@ -12,8 +12,8 @@ export default function CreateAccount() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Register>();
-  const onSubmit: SubmitHandler<Register> = data => console.log(data);
+  } = useForm<RegisterValue>();
+  const onSubmit: SubmitHandler<RegisterValue> = data => console.log(data);
 
   return (
     <div className="mt-10 flex-1 w-full flex flex-col items-center">
@@ -29,8 +29,11 @@ export default function CreateAccount() {
           {...register("email", {
             required: { value: true, message: "This field is required" },
           })}
+          autoComplete="off"
         />
-        {errors.email && <p className="text-red-400">{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-400">{errors?.email?.message}</p>
+        )}
 
         <label htmlFor="password">Password</label>
         <input
@@ -39,9 +42,10 @@ export default function CreateAccount() {
           {...register("password", {
             required: { value: true, message: "This field is required" },
           })}
+          autoComplete="off"
         />
         {errors.password && (
-          <p className="text-red-400">{errors.password.message}</p>
+          <p className="text-red-400">{errors?.password?.message}</p>
         )}
 
         <label htmlFor="passwordConfirm">Password Confirm</label>
@@ -57,9 +61,10 @@ export default function CreateAccount() {
               },
             },
           })}
+          autoComplete="off"
         />
         {errors.passwordConfirm && (
-          <p className="text-red-400">{errors.passwordConfirm.message}</p>
+          <p className="text-red-400">{errors?.passwordConfirm?.message}</p>
         )}
 
         <button

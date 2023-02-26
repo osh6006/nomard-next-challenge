@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import Link from "next/link";
 
 type FormData = {
   email: string;
@@ -23,6 +24,7 @@ export default function Login() {
           type="email"
           id="email"
           {...register("email", { required: true })}
+          autoComplete="off"
         />
 
         <label htmlFor="password">Password</label>
@@ -30,6 +32,7 @@ export default function Login() {
           type="password"
           id="password"
           {...register("password", { required: true })}
+          autoComplete="off"
         />
         <button
           type="submit"
@@ -38,6 +41,12 @@ export default function Login() {
           GO
         </button>
       </form>
+      <div className="flex mt-5 items-center justify-between w-4/5">
+        <div>Don't you have an account?</div>
+        <div className="text-sky-500 underline cursor-pointer">
+          <Link href="/create-account">Create an account here!</Link>
+        </div>
+      </div>
     </div>
   );
 }
