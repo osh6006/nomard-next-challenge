@@ -14,6 +14,7 @@ export default function CreateAccount() {
     formState: { errors },
   } = useForm<Register>();
   const onSubmit: SubmitHandler<Register> = data => console.log(data);
+
   return (
     <div className="mt-10 flex-1 w-full flex flex-col items-center">
       <h1 className="font-bold text-3xl">CREATE ACCOUNT</h1>
@@ -50,7 +51,10 @@ export default function CreateAccount() {
           {...register("passwordConfirm", {
             required: { value: true, message: "This field is required" },
             validate: {
-              passwordConfirm: value => value === watch("password"),
+              passwordConfirm: value => {
+                if (value !== watch("password"))
+                  return "Your passwords do no match";
+              },
             },
           })}
         />
