@@ -1,4 +1,7 @@
-import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import useMutation from "../lib/client/useMutation";
 
 interface RegisterValue {
   email: String;
@@ -13,7 +16,18 @@ export default function CreateAccount() {
     watch,
     formState: { errors },
   } = useForm<RegisterValue>();
-  const onSubmit: SubmitHandler<RegisterValue> = data => console.log(data);
+  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
+
+  const onSubmit: SubmitHandler<RegisterValue> = data => {
+    enter(data);
+  };
+
+  const router = useRouter();
+  useEffect(() => {
+    if (data?.ok) {
+      router.push("/log-in");
+    }
+  }, [data, router]);
 
   return (
     <div className="mt-10 flex-1 w-full flex flex-col items-center">

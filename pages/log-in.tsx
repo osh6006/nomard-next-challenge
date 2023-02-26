@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import useMutation from "../lib/client/useMutation";
 
 type FormData = {
   email: string;
   password: string;
 };
 
+interface MutationResult {
+  ok: boolean;
+}
+
 export default function Login() {
   const { register, handleSubmit } = useForm<FormData>();
   const onSubmit: SubmitHandler<FormData> = data => {
-    console.log(data);
+    login(data);
   };
+  const [login, { loading, data, error }] = useMutation("/api/users/login");
+
+  const router = useRouter();
+  useEffect(() => {
+    if (data?.ok) {
+      router.push("/");
+    }
+  }, [data, router]);
+
   return (
     <div className="mt-10 flex-1 w-full flex flex-col items-center">
       <h1 className="font-bold text-3xl">LOGIN</h1>
